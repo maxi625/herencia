@@ -1,0 +1,52 @@
+class Persona:
+    def __init__(self, nombre, edad, dni):
+        self.nombre = nombre
+        self.edad = edad
+        self.dni = dni
+
+    def mostrar_info_personal(self):
+        print(f"Nombre: {self.nombre}")
+        print(f"Edad: {self.edad}")
+        print(f"DNI: {self.dni}")
+
+    def asignar_rol(self):
+        raise NotImplementedError("Este método debe ser implementado en las subclases.")
+
+class Estudiante(Persona):
+    def __init__(self, nombre, edad, dni, carrera, semestre):
+        super().__init__(nombre, edad, dni)
+        self.carrera = carrera
+        self.semestre = semestre
+
+    def asignar_rol(self):
+        print(f"{self.nombre} es un estudiante de {self.carrera}, semestre {self.semestre}.")
+
+    def mostrar_info_especifica(self):
+        self.mostrar_info_personal()
+        print(f"Carrera: {self.carrera}")
+        print(f"Semestre: {self.semestre}")
+
+class Profesor(Persona):
+    def __init__(self, nombre, edad, dni, departamento, asignatura):
+        super().__init__(nombre, edad, dni)
+        self.departamento = departamento
+        self.asignatura = asignatura
+
+    def asignar_rol(self):
+        print(f"{self.nombre} es un profesor del departamento de {self.departamento} y dicta {self.asignatura}.")
+
+    def mostrar_info_especifica(self):
+        self.mostrar_info_personal()
+        print(f"Departamento: {self.departamento}")
+        print(f"Asignatura: {self.asignatura}")
+
+estudiante = Estudiante("lucía", 20, "12345678A", "Ingeniería", 3)
+profesor = Profesor("dr. gómez", 45, "87654321B", "Ciencias", "Física Cuántica")
+
+print("\n--- Información del Estudiante ---")
+estudiante.mostrar_info_especifica()
+estudiante.asignar_rol()
+
+print("\n--- Información del Profesor ---")
+profesor.mostrar_info_especifica()
+profesor.asignar_rol()
