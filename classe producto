@@ -1,0 +1,56 @@
+from datetime import datetime, timedelta
+
+class Producto:
+    def __init__(self, nombre, precio, fecha_vencimiento=None):
+        self.nombre = nombre
+        self.precio = precio
+        self.fecha_vencimiento = fecha_vencimiento 
+
+    def mostrar_info(self):
+        print(f"Producto: {self.nombre}")
+        print(f"Precio: ${self.precio:.2f}")
+        if self.fecha_vencimiento:
+            print(f"Fecha de vencimiento: {self.fecha_vencimiento.strftime('%Y-%m-%d')}")
+
+class ProductoAlimenticio(Producto):
+    def aplicar_descuento(self):
+        if self.fecha_vencimiento:
+            hoy = datetime.now().date()
+            dias_restantes = (self.fecha_vencimiento - hoy).days
+            if dias_restantes <= 5:  
+                self.precio *= 0.5  
+                print("¡Descuento del 50% aplicado por proximidad a la fecha de vencimiento!")
+            elif dias_restantes <= 10:
+                self.precio *= 0.8  
+                print("Descuento del 20% aplicado por cercanía a la fecha de vencimiento.")
+        return self.precio
+
+class ProductoElectronico(Producto):
+    def __init__(self, nombre, precio, año_modelo, en_promocion=False):
+        super().__init__(nombre, precio)
+        self.año_modelo = año_modelo
+        self.en_promocion = en_promocion
+
+    def aplicar_descuento(self):
+        año_actual = datetime.now().year
+        if self.año_modelo < año_actual:
+            self.precio *= 0.85  
+            print("Descuento del 15% aplicado por modelo anterior.")
+        if self.en_promocion:
+            self.precio *= 0.90  
+            print("Descuento adicional del 10% por promoción.")
+        return self.precio
+
+fecha_venc = datetime.now().date() + timedelta(days=4)
+alimento = ProductoAlimenticio("yogur natural", 10.00, fecha_venc)
+electro = ProductoElectronico("smartphone X", 800.00, año_modelo=2023, en_promocion=True)
+
+print("\n--- Producto Alimenticio ---")
+alimento.mostrar_info()
+alimento.aplicar_descuento()
+alimento.mostrar_info()
+
+print("\n--- Producto Electrónico ---")
+electro.mostrar_info()
+electro.aplicar_descuento()
+electro.mostrar_info()
