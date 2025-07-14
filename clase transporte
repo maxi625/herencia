@@ -1,0 +1,19 @@
+class transporte:
+    def __init__(self, capacidad, velocidad):
+        self.capacidad=capacidad
+        self.velocidad=velocidad
+
+    def tiempo(self, distancia):
+        return distancia / self.velocidad
+
+class avion(transporte):
+    pass
+
+class barco(transporte):
+    pass
+
+avion=avion(100, 500)
+barco=barco(200, 50)
+
+print("el avion tarda:", avion.tiempo(1000), "horas")
+print("el barco tarda:", barco.tiempo(1000), "horas")
