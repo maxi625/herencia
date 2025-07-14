@@ -1,0 +1,24 @@
+class persona:
+    def __init__(self,nombre,edad):
+        self.nombre=nombre
+        self.edad=edad
+
+    def mostrar_info(self):
+        print("nombre:", self.nombre, "- edad:", self.edad)
+
+class estudiante(persona):
+    def asignar_rol(self):
+        print("rol: estudiante")
+
+class profesor(persona):
+    def asignar_rol(self):
+        print("rol: profesor")
+        
+estudiante=estudiante("jhon",20)
+profesor=profesor("enzo",45)
+
+estudiante.mostrar_info()
+estudiante.asignar_rol()
+
+profesor.mostrar_info()
+profesor.asignar_rol()
