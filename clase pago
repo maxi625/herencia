@@ -1,0 +1,24 @@
+class pago:
+    def __init__(self,monto,fecha):
+        self.monto=monto
+        self.fecha=fecha
+
+    def mostrar(self):
+        print(f"{self.monto} - {self.fecha}")
+
+class pagotarjeta(pago):
+    def procesar(self):
+        print("tarjeta ok")
+
+class pagopaypal(pago):
+    def procesar(self):
+        print("paypal OK")
+
+pagotarjeta=pagotarjeta(750, "9/07/2025")
+pagopaypal=pagopaypal(750, "9/07/2025")
+
+pagotarjeta.mostrar()
+pagotarjeta.procesar()
+
+pagopaypal.mostrar()
+pagopaypal.procesar()
