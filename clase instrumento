@@ -1,0 +1,25 @@
+class instrumento:
+    def __init__(self,nombre):
+        self.nombre=nombre
+    def sonido(self):
+        print(self.nombre, "suena")
+
+class guitarra(instrumento):
+    def tocar(self):
+        print("plin plin")
+
+class piano(instrumento):
+    def tocar(self):
+        print("tin ton")
+
+guitarra=guitarra("Guitarra")
+piano = piano("Piano")
+
+guitarra.sonido()
+guitarra.tocar()
+
+piano.sonido()
+piano.tocar()
+
+
+
