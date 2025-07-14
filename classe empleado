@@ -1,41 +1,19 @@
-class Empleado:
-    def __init__(self, nombre, salario, cargo):
+class empleado:
+    def __init__(self,nombre,salario,cargo):
         self.nombre = nombre
         self.salario = salario
         self.cargo = cargo
 
-    def mostrar_info(self):
-        print(f"Nombre: {self.nombre}")
-        print(f"Cargo: {self.cargo}")
-        print(f"Salario actual: ${self.salario:.2f}")
-
-class Gerente(Empleado):
+class gerente(empleado):
     def calcular_aumento(self):
-        aumento = self.salario * 0.20
-        self.salario += aumento
-        print(f"Aumento aplicado al gerente: ${aumento:.2f}")
-        return self.salario
+        return self.salario*1.20  
 
-class EmpleadoTemporal(Empleado):
+class empleadotemporal(empleado):
     def calcular_aumento(self):
-    
-        if self.salario < 2000:
-            aumento = self.salario * 0.10
-        else:
-            aumento = self.salario * 0.05
-        self.salario += aumento
-        print(f"Aumento aplicado al empleado temporal: ${aumento:.2f}")
-        return self.salario
+        return self.salario*1.10  
 
-gerente = Gerente("ana", 5000, "Gerente de Ventas")
-empleado_temp = EmpleadoTemporal("luis", 1800, "Asistente Temporal")
+gerente=gerente("maxi", 500000, "gerente")
+empleadotemporal=empleadotemporal("juan", 220000, "empleado temporal")
 
-print("\n--- Información del Gerente ---")
-gerente.mostrar_info()
-gerente.calcular_aumento()
-gerente.mostrar_info()
-
-print("\n--- Información del Empleado Temporal ---")
-empleado_temp.mostrar_info()
-empleado_temp.calcular_aumento()
-empleado_temp.mostrar_info()
+print(f"{gerente.nombre} - {gerente.cargo}: {gerente.calcular_aumento():.0f}")
+print(f"{empleadotemporal.nombre} - {empleadotemporal.cargo}: {empleadotemporal.calcular_aumento():.0f}")
