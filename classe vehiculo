@@ -1,60 +1,25 @@
-class Vehiculo:
-    def __init__(self, marca, modelo, año):
-        self.marca = marca
-        self.modelo = modelo
-        self.año = año
+class vehiculo:
+    def __init__(self,marca,modelo,año):
+        self.marca=marca
+        self.modelo=modelo
+        self.anio=año
 
-    def mostrar_detalles(self):
-        print(f"Marca: {self.marca}")
-        print(f"Modelo: {self.modelo}")
-        print(f"Año: {self.año}")
+    def mostrar(self):
+        print(self.marca,self.modelo,self.anio)
 
-    def eficiencia_combustible(self):
-        raise NotImplementedError("Este método debe ser implementado por la subclase.")
+class auto(vehiculo):
+    def combustible(self,km):
+        return km/15
 
-    def combustible_para_viaje(self, distancia_km):
-        eficiencia = self.eficiencia_combustible()
-        if eficiencia == 0:
-            return float('inf')
-        return distancia_km / eficiencia
+class moto(vehiculo):
+    def combustible(self, km):
+        return km/30
 
-class Automovil(Vehiculo):
-    def __init__(self, marca, modelo, año, motor_litros):
-        super().__init__(marca, modelo, año)
-        self.motor_litros = motor_litros
+auto= auto("ford","fiesta",2020)
+moto= moto("yamaha","fz",2022)
 
-    def eficiencia_combustible(self):
-        if self.motor_litros <= 1.5:
-            return 18  # km/l
-        elif self.motor_litros <= 2.0:
-            return 14
-        else:
-            return 10
+auto.mostrar()
+print("litros",auto.combustible(150))
 
-class Motocicleta(Vehiculo):
-    def __init__(self, marca, modelo, año, cilindrada_cc):
-        super().__init__(marca, modelo, año)
-        self.cilindrada_cc = cilindrada_cc
-
-    def eficiencia_combustible(self):
-        if self.cilindrada_cc <= 150:
-            return 35  
-        elif self.cilindrada_cc <= 300:
-            return 28
-        else:
-            return 20
-
-auto = Automovil("toyota", "corolla", 2020, 1.8)
-moto = Motocicleta("yamaha", "FZ", 2022, 150)
-
-distancia = 200 
-
-print("\n--- Automóvil ---")
-auto.mostrar_detalles()
-print(f"Eficiencia: {auto.eficiencia_combustible()} km/l")
-print(f"Combustible necesario para {distancia} km: {auto.combustible_para_viaje(distancia):.2f} litros")
-
-print("\n--- Motocicleta ---")
-moto.mostrar_detalles()
-print(f"Eficiencia: {moto.eficiencia_combustible()} km/l")
-print(f"Combustible necesario para {distancia} km: {moto.combustible_para_viaje(distancia):.2f} litros")
+moto.mostrar()
+print("litros",moto.combustible(150))
