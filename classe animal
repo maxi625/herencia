@@ -14,7 +14,7 @@ class gato(animal):
     def emitir_sonido(self):
         print("miau")
 
-perro =perro("Buddy","perro")
+perro =perro("buddy","perro")
 gato = gato("milo","gato")
 
 perro.mostrar_detalles()
