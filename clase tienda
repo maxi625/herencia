@@ -1,0 +1,42 @@
+class tienda:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.inventario = []
+        self.total_ventas = 0
+
+    def agregar_producto(self, producto):
+        self.inventario.append(producto)
+        print("producto agregado:", producto)
+
+    def eliminar_producto(self, producto):
+        if producto in self.inventario:
+            self.inventario.remove(producto)
+            print("producto eliminado:", producto)
+        else:
+            print("el producto no esta en el inventario.")
+
+    def registrar_venta(self, monto):
+        self.total_ventas += monto
+
+    def mostrar_info(self):
+        print("nombre de la tienda:", self.nombre)
+        print("inventario:", self.inventario)
+        print("total de ventas:", self.total_ventas)
+
+class tiendaropa(tienda):
+    pass
+
+class tiendaelectronica(tienda):
+    pass
+
+tienda1 = tiendaropa("tienda de ropa")
+tienda1.agregar_producto("pantalon")
+tienda1.registrar_venta(5000)
+tienda1.mostrar_info()
+
+print("-----------------------------")
+
+tienda2 = tiendaelectronica("tienda electronica")
+tienda2.agregar_producto("auriculares")
+tienda2.registrar_venta(12000)
+tienda2.mostrar_info()
